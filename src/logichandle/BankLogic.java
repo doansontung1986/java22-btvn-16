@@ -8,11 +8,31 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BankLogic {
+    private static BankLogic bankLogic;
     private List<Bank> bankList;
     public static final String BANK_DATA_FILE = "bank.dat";
 
-    public BankLogic(List<Bank> bankList) {
+    private BankLogic() {
+
+    }
+
+    private BankLogic(List<Bank> bankList) {
+        super();
         this.bankList = new ArrayList<>(bankList);
+    }
+
+    public static BankLogic getInstance() {
+        if (bankLogic == null) {
+            bankLogic = new BankLogic();
+        }
+        return bankLogic;
+    }
+
+    public static BankLogic getInstance(List<Bank> bankList) {
+        if (bankLogic == null) {
+            bankLogic = new BankLogic(bankList);
+        }
+        return bankLogic;
     }
 
     public List<Bank> getBankList() {
@@ -79,5 +99,9 @@ public class BankLogic {
             }
         }
         return null;
+    }
+
+    public int getLastBankId() {
+        return this.bankList.get(this.bankList.size() - 1).getId();
     }
 }

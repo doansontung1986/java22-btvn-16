@@ -8,11 +8,31 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CustomerLogic {
+    private static CustomerLogic customerLogic;
     private List<Customer> customers;
     public static final String CUSTOMER_DATA_FILE = "customer.dat";
 
-    public CustomerLogic(List<Customer> customers) {
+    private CustomerLogic() {
+
+    }
+
+    private CustomerLogic(List<Customer> customers) {
+        super();
         this.customers = new ArrayList<>(customers);
+    }
+
+    public static CustomerLogic getInstance() {
+        if (customerLogic == null) {
+            customerLogic = new CustomerLogic();
+        }
+        return customerLogic;
+    }
+
+    public static CustomerLogic getInstance(List<Customer> customers) {
+        if (customerLogic == null) {
+            customerLogic = new CustomerLogic(customers);
+        }
+        return customerLogic;
     }
 
     public List<Customer> getCustomers() {
@@ -79,5 +99,9 @@ public class CustomerLogic {
             }
         }
         return null;
+    }
+
+    public int getLastCustomerId() {
+        return this.customers.get(this.customers.size() - 1).getId();
     }
 }

@@ -1,14 +1,20 @@
 package entity;
 
+import logichandle.CustomerLogic;
 import statics.CustomerType;
 import utilities.ScannerUtility;
 
 public class Customer extends Person {
-    private static int AUTO_ID = 10000;
+    private static int AUTO_ID;
     private int id;
     private CustomerType customerType;
 
     public Customer() {
+        if (CustomerLogic.getInstance().getCustomers().size() > 0) {
+            AUTO_ID = CustomerLogic.getInstance().getLastCustomerId() + 1;
+        } else {
+            AUTO_ID = 10000;
+        }
         this.id = AUTO_ID;
         AUTO_ID++;
     }

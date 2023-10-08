@@ -82,6 +82,13 @@ public class SavingAccountLogic {
     }
 
     public void displaySavingAccountList(List<SavingAccount> savingAccounts) {
+        if (this.savingAccounts.isEmpty()) {
+            System.out.println("-------------------------");
+            System.out.println("Danh sách số tiết kiệm rỗng");
+            System.out.println("-------------------------");
+            return;
+        }
+
         for (SavingAccount savingAccount : savingAccounts) {
             savingAccount.displayInfo();
             System.out.println("-----------------------------------------------------");
@@ -169,6 +176,13 @@ public class SavingAccountLogic {
     }
 
     public void displayTotalBalanceForAllWorkers() {
+        if (this.savingAccounts.isEmpty()) {
+            System.out.println("-------------------------");
+            System.out.println("Danh sách số tiết kiệm rỗng");
+            System.out.println("-------------------------");
+            return;
+        }
+
         System.out.printf("%-16s | %-24s | %-16s |\n", "Mã khách hàng", "Tên khách hàng", "Tổng số tiền gửi");
         for (SavingAccount savingAccount : this.savingAccounts) {
             savingAccount.displayTotalBalance();

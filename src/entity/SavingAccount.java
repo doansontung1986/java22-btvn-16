@@ -22,16 +22,8 @@ public class SavingAccount implements Displayable, Serializable {
         return customer;
     }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
-
     public List<Account> getAccounts() {
         return accounts;
-    }
-
-    public void setAccounts(List<Account> accounts) {
-        this.accounts = accounts;
     }
 
     public Map<Integer, Integer> getLimitAccountForEachBank() {
@@ -46,9 +38,9 @@ public class SavingAccount implements Displayable, Serializable {
     public void displayInfo() {
         System.out.println("Thông tin sổ tiết kiệm của khách hàng " + customer.getName());
         System.out.printf("%-16s | %-20s |\n", customer.getName(), customer.getCustomerType().type);
-        System.out.printf("%-16s | %-20s | %-16s |\n", "Mã tài khoản", "Tên ngân hàng", "Tiền gửi");
+        System.out.printf("%-20s | %-16s |\n", "Tên ngân hàng", "Tiền gửi");
         for (Account account : this.accounts) {
-            System.out.printf("%-16s | %-20s | %-16s |\n", account.getId(), account.getBank().getBankName(), account.getBalance());
+            System.out.printf("%-20s | %-16s |\n", account.getBank().getBankName(), account.getBalance());
         }
     }
 

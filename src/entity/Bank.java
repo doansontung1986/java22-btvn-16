@@ -1,5 +1,6 @@
 package entity;
 
+import logichandle.BankLogic;
 import utilities.ScannerUtility;
 import utilities.ValidateUserInput;
 
@@ -7,12 +8,17 @@ import java.io.Serializable;
 
 public class Bank implements Inputable, Displayable, Serializable {
     private static final long serialVersionUID = -6500665823330706018L;
-    private static int AUTO_ID = 100;
+    private static int AUTO_ID;
     private int id;
     private String bankName;
     private double interestRate;
 
     public Bank() {
+        if (BankLogic.getInstance().getBankList().size() > 0) {
+            AUTO_ID = BankLogic.getInstance().getLastBankId() + 1;
+        } else {
+            AUTO_ID = 100;
+        }
         this.id = AUTO_ID;
         AUTO_ID++;
     }

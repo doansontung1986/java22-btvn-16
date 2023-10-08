@@ -2,6 +2,7 @@ package logichandle;
 
 import entity.Bank;
 import entity.Customer;
+import entity.Person;
 import entity.SavingAccount;
 import utilities.DataUtil;
 import utilities.FileUtil;
@@ -15,15 +16,14 @@ public class MenuManagement {
     private BankLogic bankLogic;
     private SavingAccountLogic savingAccountLogic;
 
-    @SuppressWarnings("unchecked")
     public void initializeData() {
         Object customerDataFromFile = FileUtil.getInstance().readDataFromFile(CustomerLogic.CUSTOMER_DATA_FILE);
         List<Customer> customers = DataUtil.isNullOrEmpty(customerDataFromFile) ? new ArrayList<>() : (List<Customer>) customerDataFromFile;
-        this.customerLogic = new CustomerLogic(customers);
+        this.customerLogic = CustomerLogic.getInstance(customers);
 
         Object bankDataFromFile = FileUtil.getInstance().readDataFromFile(BankLogic.BANK_DATA_FILE);
         List<Bank> bankList = DataUtil.isNullOrEmpty(bankDataFromFile) ? new ArrayList<>() : (List<Bank>) bankDataFromFile;
-        this.bankLogic = new BankLogic(bankList);
+        this.bankLogic = BankLogic.getInstance(bankList);
 
         Object savingAccountDataFromFile = FileUtil.getInstance().readDataFromFile(SavingAccountLogic.SAVING_ACCOUNT_DATA_FILE);
         List<SavingAccount> savingAccounts = DataUtil.isNullOrEmpty(savingAccountDataFromFile) ? new ArrayList<>() : (List<SavingAccount>) savingAccountDataFromFile;
